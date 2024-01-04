@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Finch List</h1>
+
+{% for finch in finches %}
+<a href="{% url 'detail' finch.id %}">
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ finch.species }}</span>
+    <p>Scientific Name: {{ finch.scientific_name }}</p>
+    <p>Habitat: {{ finch.habitat|linebreaks }}</p>
+    <p>Diet: {{ finch.diet }}</p>
+    {% if finch.average_lifespan > 1 %}
+      <p>Average Lifespan: {{ finch.average_lifespan}}</p>
+    {% else %}
+      <p>Average Lifespan: Chick</p>
+    {% endif %}
+  </div>
+</div>
+</a>
+{% endfor %}
+
+{% endblock %}
